@@ -282,6 +282,8 @@
     <icon drawable="@drawable/themed_icon_camera" package="com.samsung.android.ruler"/>
     <icon drawable="@drawable/themed_icon_camera" package="com.oplus.camera" />
     <icon drawable="@drawable/themed_icon_camera" package="com.google.android.apps.cameralite"/>
+    <icon drawable="@drawable/themed_icon_camera" package="app.grapheneos.camera" />
+    <icon drawable="@drawable/themed_icon_miuicamera" package="com.android.camera" />
     <icon drawable="@drawable/themed_icon_camscanner" package="com.intsig.camscanner"/>
     <icon drawable="@drawable/themed_icon_canvas" package="com.canva.editor"/>
     <icon drawable="@drawable/themed_icon_capcut" package="com.lemon.lvoverseas"/>
