@@ -63,4 +63,8 @@
     <string name="show_lens_button_title">Show lens button</string>
     <string name="show_lens_button_summary">Replace screenshot button with Google Lens button, if available</string>
 
+    <!-- Navigation bar -->
+    <string name="pref_allow_phone_taskbar">Use taskbar</string>
+    <string name="pref_allow_phone_taskbar_desc">For opening and switching apps anywhere</string>
+
 </resources>
