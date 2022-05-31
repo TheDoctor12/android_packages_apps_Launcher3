@@ -57,7 +57,6 @@ import com.android.launcher3.util.MainThreadInitializedObject;
 import com.android.launcher3.util.Themes;
 import com.android.launcher3.util.WindowBounds;
 
-import com.android.quickstep.SystemUiProxy;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -200,8 +199,6 @@ public class InvariantDeviceProfile implements OnSharedPreferenceChangeListener 
                         onConfigChanged(displayContext);
                     }
                 });
-
-        Utilities.getPrefs(context).registerOnSharedPreferenceChangeListener(this);
     }
 
     /**
@@ -295,13 +292,6 @@ public class InvariantDeviceProfile implements OnSharedPreferenceChangeListener 
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
         if (KEY_SHOW_DESKTOP_LABELS.equals(key) || KEY_SHOW_DRAWER_LABELS.equals(key)) {
             onConfigChanged(mContext);
-        } else if (DeviceProfile.KEY_PHONE_TASKBAR.equals(key)) {
-            // Create the illusion of this taking effect immediately
-            // Also needed because TaskbarManager inits before SystemUiProxy on start
-            boolean enabled = Utilities.getPrefs(mContext).getBoolean(DeviceProfile.KEY_PHONE_TASKBAR, false);
-            SystemUiProxy.INSTANCE.get(mContext).setTaskbarEnabled(enabled);
-
-            onConfigChanged(mContext, true);
         }
     }
 
@@ -427,10 +417,6 @@ public class InvariantDeviceProfile implements OnSharedPreferenceChangeListener 
     }
 
     private void onConfigChanged(Context context) {
-        onConfigChanged(context, false);
-    }
-
-    private void onConfigChanged(Context context, boolean taskbarChanged) {
         Object[] oldState = toModelState();
 
         // Re-init grid
@@ -439,7 +425,7 @@ public class InvariantDeviceProfile implements OnSharedPreferenceChangeListener 
 
         boolean modelPropsChanged = !Arrays.equals(oldState, toModelState());
         for (OnIDPChangeListener listener : mChangeListeners) {
-            listener.onIdpChanged(modelPropsChanged, taskbarChanged);
+            listener.onIdpChanged(modelPropsChanged);
         }
     }
 
@@ -687,7 +673,7 @@ public class InvariantDeviceProfile implements OnSharedPreferenceChangeListener 
         /**
          * Called when the device provide changes
          */
-        void onIdpChanged(boolean modelPropertiesChanged, boolean taskbarChanged);
+        void onIdpChanged(boolean modelPropertiesChanged);
     }
 
 

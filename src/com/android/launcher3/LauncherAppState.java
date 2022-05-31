@@ -86,7 +86,7 @@ public class LauncherAppState implements SafeCloseable {
         Log.v(Launcher.TAG, "LauncherAppState initiated");
         Preconditions.assertUIThread();
 
-        mInvariantDeviceProfile.addOnChangeListener((modelPropertiesChanged, taskbarChanged) -> {
+        mInvariantDeviceProfile.addOnChangeListener(modelPropertiesChanged -> {
             if (modelPropertiesChanged) {
                 refreshAndReloadLauncher();
             }
