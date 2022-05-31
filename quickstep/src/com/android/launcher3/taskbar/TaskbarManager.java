@@ -219,10 +219,9 @@ public class TaskbarManager implements DisplayController.DisplayInfoChangeListen
         boolean isTaskBarEnabled =
                 FeatureFlags.ENABLE_TASKBAR.get() && dp != null && dp.isTaskbarPresent;
 
-        SystemUiProxy sysui = SystemUiProxy.INSTANCE.get(mContext);
-        sysui.setTaskbarEnabled(isTaskBarEnabled);
         if (!isTaskBarEnabled) {
-            sysui.notifyTaskbarStatus(/* visible */ false, /* stashed */ false);
+            SystemUiProxy.INSTANCE.get(mContext)
+                    .notifyTaskbarStatus(/* visible */ false, /* stashed */ false);
             return;
         }
 
