@@ -16,25 +16,20 @@
 
 package com.android.quickstep.views;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 
 import com.android.launcher3.DeviceProfile;
 import com.android.launcher3.Insettable;
-import com.android.launcher3.Utilities;
 import com.android.launcher3.R;
 import com.android.launcher3.util.MultiValueAlpha;
 import com.android.launcher3.util.MultiValueAlpha.AlphaProperty;
@@ -50,7 +45,7 @@ import java.lang.annotation.RetentionPolicy;
  * View for showing action buttons in Overview
  */
 public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayout
-        implements OnClickListener, Insettable, SharedPreferences.OnSharedPreferenceChangeListener {
+        implements OnClickListener, Insettable {
 
     private final Rect mInsets = new Rect();
 
@@ -84,8 +79,6 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
     private static final int INDEX_VISIBILITY_ALPHA = 1;
     private static final int INDEX_FULLSCREEN_ALPHA = 2;
     private static final int INDEX_HIDDEN_FLAGS_ALPHA = 3;
-
-    private static final String KEY_SHOW_LENS_BUTTON = "pref_show_lens_button";
 
     private final MultiValueAlpha mMultiValueAlpha;
     private Button mSplitButton;
@@ -124,25 +117,6 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
 
         mSplitButton = findViewById(R.id.action_split);
         mSplitButton.setOnClickListener(this);
-
-        SharedPreferences prefs = Utilities.getPrefs(getContext());
-        prefs.registerOnSharedPreferenceChangeListener(this);
-
-        if (Utilities.isGSAEnabled(getContext()) && prefs.getBoolean(KEY_SHOW_LENS_BUTTON, false)) {
-            View lens = findViewById(R.id.action_lens);
-            lens.setOnClickListener(this);
-            lens.setVisibility(VISIBLE);
-            findViewById(R.id.lens_space).setVisibility(VISIBLE);
-            findViewById(R.id.action_screenshot).setVisibility(GONE);
-            findViewById(R.id.screenshot_space).setVisibility(GONE);
-        }
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-        if (key.equals(KEY_SHOW_LENS_BUTTON)) {
-            ((Activity) getContext()).recreate();
-        }
     }
 
     /**
@@ -166,8 +140,6 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
             mCallbacks.onSplit();
         } else if (id == R.id.action_clear_all) {
             mCallbacks.onClearAllTasksRequested();
-        } else if (id == R.id.action_lens) {
-            mCallbacks.onLens();
         }
     }
 
@@ -246,13 +218,6 @@ public class OverviewActionsView<T extends OverlayUICallbacks> extends FrameLayo
     public void setDp(DeviceProfile dp) {
         mDp = dp;
         updateVerticalMargin(SysUINavigationMode.getMode(getContext()));
-
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                dp.isVerticalBarLayout() ? 0 : dp.overviewActionsButtonSpacing,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        params.weight = dp.isVerticalBarLayout() ? 1 : 0;
-        findViewById(R.id.action_split_space).setLayoutParams(params);
-
         requestLayout();
 
         mSplitButton.setCompoundDrawablesWithIntrinsicBounds(

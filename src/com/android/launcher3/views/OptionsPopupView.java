@@ -186,7 +186,7 @@ public class OptionsPopupView extends ArrowPopup<Launcher>
                 R.drawable.ic_setting,
                 LAUNCHER_SETTINGS_BUTTON_TAP_OR_LONGPRESS,
                 OptionsPopupView::startSettings));
-        if (!WidgetsModel.GO_DISABLE_WIDGETS && Utilities.isWorkspaceEditAllowed(launcher)) {
+        if (!WidgetsModel.GO_DISABLE_WIDGETS) {
             options.add(new OptionItem(launcher,
                     R.string.widget_button_text,
                     R.drawable.ic_widget,
