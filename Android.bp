@@ -123,6 +123,7 @@ android_library {
         "androidx.slice_slice-view",
         "androidx.cardview_cardview",
         "com.google.android.material_material",
+        "co.aospa.framework",
         "iconloader_base",
         "libGoogleFeed",
         "SettingsLib",
