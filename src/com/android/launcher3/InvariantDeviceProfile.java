@@ -84,9 +84,6 @@ public class InvariantDeviceProfile {
 
     private static final float ICON_SIZE_DEFINED_IN_APP_DP = 48;
 
-    public static final String KEY_ICON_SIZE = "pref_custom_icon_size";
-    public static final String KEY_FONT_SIZE = "pref_custom_font_size";
-
     // Constants that affects the interpolation curve between statically defined device profile
     // buckets.
     private static final float KNEARESTNEIGHBOR = 3;
@@ -276,16 +273,6 @@ public class InvariantDeviceProfile {
             return TYPE_TABLET;
         } else {
             return TYPE_PHONE;
-        }
-    }
-
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-        switch (key) {
-            case KEY_ICON_SIZE:
-            case KEY_FONT_SIZE:
-                onConfigChanged(mContext);
-                break;
         }
     }
 
@@ -778,11 +765,6 @@ public class InvariantDeviceProfile {
 
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ProfileDisplayOption);
 
-            float iconSizeModifier =
-                    (float) Utilities.getPrefs(context).getInt(KEY_ICON_SIZE, 100) / 100F;
-            float fontSizeModifier =
-                    (float) Utilities.getPrefs(context).getInt(KEY_FONT_SIZE, 100) / 100F;
-
             minWidthDps = a.getFloat(R.styleable.ProfileDisplayOption_minWidthDps, 0);
             minHeightDps = a.getFloat(R.styleable.ProfileDisplayOption_minHeightDps, 0);
 
@@ -842,7 +824,7 @@ public class InvariantDeviceProfile {
             folderBorderSpace = borderSpace;
 
             iconSizes[INDEX_DEFAULT] =
-                    a.getFloat(R.styleable.ProfileDisplayOption_iconImageSize, 0) * iconSizeModifier;
+                    a.getFloat(R.styleable.ProfileDisplayOption_iconImageSize, 0);
             iconSizes[INDEX_LANDSCAPE] =
                     a.getFloat(R.styleable.ProfileDisplayOption_landscapeIconSize,
                             iconSizes[INDEX_DEFAULT]);
@@ -857,7 +839,7 @@ public class InvariantDeviceProfile {
                             iconSizes[INDEX_DEFAULT]);
 
             textSizes[INDEX_DEFAULT] =
-                    a.getFloat(R.styleable.ProfileDisplayOption_iconTextSize, 0) * fontSizeModifier;
+                    a.getFloat(R.styleable.ProfileDisplayOption_iconTextSize, 0);
             textSizes[INDEX_LANDSCAPE] =
                     a.getFloat(R.styleable.ProfileDisplayOption_landscapeIconTextSize,
                             textSizes[INDEX_DEFAULT]);
