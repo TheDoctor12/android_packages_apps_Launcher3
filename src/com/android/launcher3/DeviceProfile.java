@@ -187,6 +187,7 @@ public class DeviceProfile {
     public final int overviewActionsMarginThreeButtonPx;
     public final int overviewActionsTopMarginGesturePx;
     public final int overviewActionsBottomMarginGesturePx;
+    public final int overviewActionsButtonSpacing;
     public int overviewPageSpacing;
     public int overviewRowSpacing;
     public int overviewGridSideMargin;
@@ -337,16 +338,24 @@ public class DeviceProfile {
                 isTwoPanels ? inv.numDatabaseAllAppsColumns : inv.numAllAppsColumns;
         hotseatBarSizeExtraSpacePx = 0;
         hotseatBarTopPaddingPx =
-                res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding);
+                res.getDimensionPixelSize(Utilities.showQSB(context)
+                        ? R.dimen.dynamic_grid_hotseat_top_padding_widget
+                        : R.dimen.dynamic_grid_hotseat_top_padding);
         hotseatBarBottomPaddingPx = (isTallDevice ? 0
-                : res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding))
-                + res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_bottom_padding);
+                : res.getDimensionPixelSize(Utilities.showQSB(context)
+                        ? R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding_widget
+                        : R.dimen.dynamic_grid_hotseat_bottom_non_tall_padding))
+                + res.getDimensionPixelSize(Utilities.showQSB(context)
+                        ? R.dimen.dynamic_grid_hotseat_bottom_padding_widget
+                        : R.dimen.dynamic_grid_hotseat_bottom_padding);
         hotseatBarSidePaddingEndPx =
                 res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_side_padding);
         // Add a bit of space between nav bar and hotseat in vertical bar layout.
         hotseatBarSidePaddingStartPx = isVerticalBarLayout() ? workspacePageIndicatorHeight : 0;
         hotseatExtraVerticalSize =
-                res.getDimensionPixelSize(R.dimen.dynamic_grid_hotseat_extra_vertical_size);
+                res.getDimensionPixelSize(Utilities.showQSB(context)
+                        ? R.dimen.dynamic_grid_hotseat_extra_vertical_size_widget
+                        : R.dimen.dynamic_grid_hotseat_extra_vertical_size);
         updateHotseatIconSize(
                 pxFromDp(inv.iconSize[InvariantDeviceProfile.INDEX_DEFAULT], mMetrics, 1f));
 
@@ -381,10 +390,14 @@ public class DeviceProfile {
                 overviewPageSpacing = res.getDimensionPixelSize(
                         R.dimen.overview_page_spacing_grid_portrait);
             }
+            overviewActionsButtonSpacing = res.getDimensionPixelSize(
+                    R.dimen.overview_actions_button_spacing_grid);
         } else {
             overviewActionsTopMarginGesturePx = res.getDimensionPixelSize(
                     R.dimen.overview_actions_margin_gesture);
             overviewActionsBottomMarginGesturePx = overviewActionsTopMarginGesturePx;
+            overviewActionsButtonSpacing = res.getDimensionPixelSize(
+                    R.dimen.overview_actions_button_spacing);
             overviewPageSpacing = res.getDimensionPixelSize(R.dimen.overview_page_spacing);
         }
         overviewActionsMarginThreeButtonPx = res.getDimensionPixelSize(
