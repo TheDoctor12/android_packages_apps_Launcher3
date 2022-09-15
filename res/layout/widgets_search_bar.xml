@@ -16,7 +16,6 @@
         android:paddingStart="12dp"
         android:paddingEnd="0dp"
         android:drawablePadding="8dp"
-        android:drawableStart="@drawable/ic_allapps_search"
         android:background="@null"
         android:hint="@string/widgets_full_sheet_search_bar_hint"
         android:maxLines="1"
