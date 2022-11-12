@@ -571,6 +571,9 @@ public abstract class DragView<T extends Context & ActivityContext> extends Fram
         }
 
         public void animateToPos(float value) {
+            if (value < -mDelta) {
+              value = -mDelta;
+            }
             mSpring.animateToFinalPosition(Utilities.boundToRange(value, -mDelta, mDelta));
         }
     }
