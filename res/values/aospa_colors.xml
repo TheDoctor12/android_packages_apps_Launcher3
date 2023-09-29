@@ -17,4 +17,8 @@
 
 <resources>
     <color name="disabled_text_color">#66000000</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primaryForeground">@color/black</color>
+    <color name="primaryBackground">@color/white</color>
 </resources>

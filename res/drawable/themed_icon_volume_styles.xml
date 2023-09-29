@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="192dp" android:height="192dp" android:viewportWidth="192" android:viewportHeight="192" android:tint="@color/primaryForeground">  
+  <path android:pathData="M60,113V50m2,101v-12m4,0h-4" android:strokeWidth="6" android:fillColor="#00000000" android:strokeColor="@color/primaryForeground" android:strokeLineCap="round"/>  
+  <path android:pathData="M84,164V28a6,6 0,0 0,-6 -6H42a6,6 0,0 0,-6 6v136a6,6 0,0 0,6 6h36a6,6 0,0 0,6 -6Z" android:strokeWidth="12" android:fillColor="#00000000" android:strokeColor="@color/primaryForeground" android:strokeLineCap="round"/>  
+  <path android:pathData="M126.55,139c-0.9,0 -1.64,0.73 -1.54,1.63a15.03,15.03 0,0 0,4.33 9.03,15.03 15.03,0 0,0 9.03,4.33c0.89,0.1 1.63,-0.64 1.63,-1.54v-1.64a1.63,1.63 0,0 0,-1.16 -1.56l-1.98,-0.39a1.63,1.63 0,0 0,-1.62 0.41l-0.99,0.99a12.7,12.7 0,0 1,-5.5 -5.5l0.99,-0.99a1.63,1.63 0,0 0,0.41 -1.62l-0.39,-1.98a1.63,1.63 0,0 0,-1.56 -1.16h-1.64Z" android:strokeLineJoin="round" android:strokeWidth="6" android:fillColor="#00000000" android:strokeColor="@color/primaryForeground" android:strokeLineCap="round"/>  
+  <path android:pathData="M132,113V89" android:strokeWidth="6" android:fillColor="#00000000" android:strokeColor="@color/primaryForeground" android:strokeLineCap="round"/>  
+  <path android:pathData="M156,164V28a6,6 0,0 0,-6 -6h-36a6,6 0,0 0,-6 6v136a6,6 0,0 0,6 6h36a6,6 0,0 0,6 -6Z" android:strokeWidth="12" android:fillColor="#00000000" android:strokeColor="@color/primaryForeground" android:strokeLineCap="round"/>  
+  <path android:pathData="M60,50m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" android:strokeWidth="8" android:fillColor="#00000000" android:strokeColor="@color/primaryForeground" android:strokeLineCap="round"/>  
+  <path android:pathData="M59,151m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0" android:strokeWidth="6" android:fillColor="#00000000" android:strokeColor="@color/primaryForeground" android:strokeLineCap="round"/>  
+  <path android:pathData="M132,89m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" android:strokeWidth="8" android:fillColor="#00000000" android:strokeColor="@color/primaryForeground" android:strokeLineCap="round"/> 
+</vector>
